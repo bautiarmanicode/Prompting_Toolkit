@@ -4,15 +4,87 @@ import os
 
 
 # Sample Data (Expand these based on sources)
-camera_movements = ["Slow zoom", "First-person perspective", "Aerial shot", "Tracking shot"]
-lighting_styles = ["Silhouette", "Firelight", "Neon-lit", "Sunlight filtering through leaves"]
-moods = ["Magical", "Ethereal", "Mysterious", "Joyful"]
+camera_movements = [
+    "Slow zoom", 
+    "First-person perspective", 
+    "Aerial shot", 
+    "Tracking shot",
+    "Extreme wide shot", 
+    "Long shot", 
+    "Wide shot", 
+    "Full shot", 
+    "Medium long shot", 
+    "Medium wide shot", 
+    "Cowboy shot",
+    "Medium shot", 
+    "Medium close-up", 
+    "Close-up", 
+    "Extreme close-up", 
+    "Establishing shot",
+    "Shallow focus", 
+    "Deep focus", 
+    "Tilt-shift soft focus", 
+    "Eye level shot", 
+    "Low angle shot", 
+    "High angle shot", 
+    "Hip level shot",
+    "Knee level shot", 
+    "Ground level shot", 
+    "Steadicam shot", 
+    "Shoulder-level shot", 
+    "Dutch angle shot",
+    "Birds-eye-view shot", 
+    "Overhead shot", 
+    "Helicopter shot", 
+    "Worm's eye view", 
+    "Pan shot", 
+    "Crab shot",
+    "Arc shot", 
+    "Handheld shot", 
+    "Crane shot", 
+    "Drone shot", 
+    "Zoom in", 
+    "Zoom out", 
+    "Static shot",
+    "FPV", 
+    "Macro", 
+    "Cinematography", 
+    "Over the shoulder", 
+    "Establishing wide", 
+    "50mm lens", 
+    "SnorriCam",
+    "Realistic documentary", 
+    "Camcorder" 
+]
+
+lighting_styles = [
+    "Silhouette", 
+    "Firelight", 
+    "Neon-lit", 
+    "Sunlight filtering through leaves",
+    "Diffused lighting",
+    "Lens flare",
+    "Back lit", 
+    "Side lit",
+    "[color] gel lighting", # Placeholder for user-specified color
+    "Venetian lighting" 
+]
+
+moods = [
+    "Magical",
+    "Ethereal",
+    "Mysterious", 
+    "Joyful",
+    "Moody", 
+    "Cinematic"
+]
 characters = ["Shaman woman", "Group of women", "Lone figure", "Jaguar"]
+
 settings = ["Ancient forest", "Emerald lagoon", "Cave of healing", "Desert landscape"]
 details = ["Crystals", "Incense smoke", "Petroglyphs", "Medicinal plants"]
 
 # Streamlit App Title
-st.title("Prompt Generator for Creative Visuals")
+st.title("Prompt Generator for Alpha Gen-3")
 
 # Sidebar Inputs
 st.sidebar.header("Prompt Elements")
@@ -34,7 +106,7 @@ if selected_details:
     prompt += "Details: " + ", ".join(selected_details)
 
 # Display Generated Prompt
-st.header("Generated Prompt:")
+st.header("Prompt Generado:")
 st.write(prompt)
 
 # Explanation and Connection to Sources
