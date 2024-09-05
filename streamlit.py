@@ -3,51 +3,6 @@ import random
 import os
 
 
-# Función para manejar opciones personalizadas
-def custom_option(options, label):
-    custom = st.sidebar.text_input(f"Custom {label}:")
-    if custom:
-        display_options = options + [f"Custom: {custom}"]
-    else:
-        display_options = options
-    selected = st.sidebar.selectbox(f"Choose a {label}:", display_options)
-    if selected.startswith("Custom:"):
-        return custom
-    return selected
-
-# Streamlit App Title
-st.title("Prompt Generator for Alpha Gen-3")
-
-# Sidebar Inputs with Custom Options
-st.sidebar.header("Prompt Elements")
-selected_camera = custom_option(camera_movements, "camera movement")
-selected_lighting = custom_option(lighting_styles, "lighting style")
-selected_mood = custom_option(moods, "mood")
-selected_character = custom_option(characters, "character")
-selected_setting = custom_option(settings, "setting")
-selected_details = st.sidebar.multiselect("Choose details (optional):", details)
-
-# Idea input
-idea = st.sidebar.text_area("Enter your idea:")
-
-# Generate Prompt Logic
-prompt = f"Create a visually stunning scene with a {selected_mood} atmosphere.\n"
-prompt += f"Camera: {selected_camera}\n"
-prompt += f"Lighting: {selected_lighting}\n"
-prompt += f"Character: {selected_character}\n"
-prompt += f"Setting: {selected_setting}\n"
-
-if selected_details:
-    prompt += "Details: " + ", ".join(selected_details) + "\n"
-
-if idea:
-    prompt += f"Idea: {idea}\n"
-
-# Display Generated Prompt
-st.header("Generated Prompt:")
-st.write(prompt)
-
-
 
 # Sample Data (Expand these based on sources)
 camera_movements = [
@@ -150,6 +105,55 @@ prompt += f"Setting: {selected_setting}\n"
 
 if selected_details:
     prompt += "Details: " + ", ".join(selected_details)
+
+
+# Función para manejar opciones personalizadas
+def custom_option(options, label):
+    custom = st.sidebar.text_input(f"Custom {label}:")
+    if custom:
+        display_options = options + [f"Custom: {custom}"]
+    else:
+        display_options = options
+    selected = st.sidebar.selectbox(f"Choose a {label}:", display_options)
+    if selected.startswith("Custom:"):
+        return custom
+    return selected
+
+# Streamlit App Title
+st.title("Prompt Generator for Alpha Gen-3")
+
+# Sidebar Inputs with Custom Options
+st.sidebar.header("Prompt Elements")
+selected_camera = custom_option(camera_movements, "camera movement")
+selected_lighting = custom_option(lighting_styles, "lighting style")
+selected_mood = custom_option(moods, "mood")
+selected_character = custom_option(characters, "character")
+selected_setting = custom_option(settings, "setting")
+selected_details = st.sidebar.multiselect("Choose details (optional):", details)
+
+# Idea input
+idea = st.sidebar.text_area("Enter your idea:")
+
+# Generate Prompt Logic
+prompt = f"Create a visually stunning scene with a {selected_mood} atmosphere.\n"
+prompt += f"Camera: {selected_camera}\n"
+prompt += f"Lighting: {selected_lighting}\n"
+prompt += f"Character: {selected_character}\n"
+prompt += f"Setting: {selected_setting}\n"
+
+if selected_details:
+    prompt += "Details: " + ", ".join(selected_details) + "\n"
+
+if idea:
+    prompt += f"Idea: {idea}\n"
+
+# Display Generated Prompt
+st.header("Generated Prompt:")
+st.write(prompt)
+
+
+
+
 
 # Display Generated Prompt
 st.header("Prompt Generado:")
