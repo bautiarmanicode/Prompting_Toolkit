@@ -4,85 +4,34 @@ import os
 
 # Sample Data (Expand these based on sources)
 camera_movements = [
-    "Slow zoom", 
-    "First-person perspective", 
-    "Aerial shot", 
-    "Tracking shot",
-    "Extreme wide shot", 
-    "Long shot", 
-    "Wide shot", 
-    "Full shot", 
-    "Medium long shot", 
-    "Medium wide shot", 
-    "Cowboy shot",
-    "Medium shot", 
-    "Medium close-up", 
-    "Close-up", 
-    "Extreme close-up", 
-    "Establishing shot",
-    "Shallow focus", 
-    "Deep focus", 
-    "Tilt-shift soft focus", 
-    "Eye level shot", 
-    "Low angle shot", 
-    "High angle shot", 
-    "Hip level shot",
-    "Knee level shot", 
-    "Ground level shot", 
-    "Steadicam shot", 
-    "Shoulder-level shot", 
-    "Dutch angle shot",
-    "Birds-eye-view shot", 
-    "Overhead shot", 
-    "Helicopter shot", 
-    "Worm's eye view", 
-    "Pan shot", 
-    "Crab shot",
-    "Arc shot", 
-    "Handheld shot", 
-    "Crane shot", 
-    "Drone shot", 
-    "Zoom in", 
-    "Zoom out", 
-    "Static shot",
-    "FPV", 
-    "Macro", 
-    "Cinematography", 
-    "Over the shoulder", 
-    "Establishing wide", 
-    "50mm lens", 
-    "SnorriCam",
-    "Realistic documentary", 
-    "Camcorder" 
+    "Slow zoom (A gradual zoom in to focus the subject)", 
+    "First-person perspective (Shot from character's viewpoint)", 
+    "Aerial shot (High-altitude view of the scene)", 
+    "Tracking shot (Camera follows the action)",
+    "Extreme wide shot (Emphasizes scale and environment)"
 ]
 
 lighting_styles = [
-    "Silhouette", 
-    "Firelight", 
-    "Neon-lit", 
-    "Sunlight filtering through leaves",
-    "Diffused lighting",
-    "Lens flare",
-    "Back lit", 
-    "Side lit",
-    "[color] gel lighting", # Placeholder for user-specified color
-    "Venetian lighting" 
+    "Silhouette (Subject in shadow, light from behind)", 
+    "Firelight (Scene illuminated by fire)", 
+    "Neon-lit (Colorful, glowing lights typical of urban settings)",
+    "Sunlight filtering through leaves (Natural and soft lighting)",
+    "Diffused lighting (Soft, even light with minimal shadows)"
 ]
 
 moods = [
-    "Magical",
-    "Ethereal",
-    "Mysterious", 
-    "Joyful",
-    "Moody", 
-    "Cinematic"
+    "Magical (Dreamy, surreal)", 
+    "Ethereal (Delicate, otherworldly)", 
+    "Mysterious (Dark, enigmatic)", 
+    "Joyful (Bright, happy)"
 ]
+
 characters = ["Shaman woman", "Group of women", "Lone figure", "Jaguar"]
 
 settings = ["Ancient forest", "Emerald lagoon", "Cave of healing", "Desert landscape"]
 details = ["Crystals", "Incense smoke", "Petroglyphs", "Medicinal plants"]
 
-# Function for handling custom options
+# Function for handling custom options and removing explanations for prompt
 def custom_option(options, label):
     custom = st.sidebar.text_input(f"Custom {label}:")
     if custom:
@@ -92,7 +41,7 @@ def custom_option(options, label):
     selected = st.sidebar.selectbox(f"Choose a {label}:", display_options)
     if selected.startswith("Custom:"):
         return custom
-    return selected
+    return selected.split(' (')[0]  # Removes explanation in parentheses
 
 # Streamlit App Title
 st.title("Prompt Generator for Alpha Gen-3")
@@ -108,6 +57,19 @@ selected_details = st.sidebar.multiselect("Choose details (optional):", details)
 
 # Idea input
 idea = st.sidebar.text_area("Enter your idea:")
+
+# Show explanations of selected options before the prompt
+explanations = {
+    "camera movement": selected_camera,
+    "lighting style": selected_lighting,
+    "mood": selected_mood,
+    "character": selected_character,
+    "setting": selected_setting
+}
+
+st.header("Selected Elements with Explanations:")
+for key, value in explanations.items():
+    st.write(f"**{key.capitalize()}:** {value}")
 
 # Generate Prompt Logic
 prompt = f"Create a visually stunning scene with a {selected_mood} atmosphere.\n"
@@ -126,16 +88,20 @@ if idea:
 st.header("Generated Prompt:")
 st.write(prompt)
 
-# Explanation and Connection to Sources
-st.sidebar.header("Explanation:")
+# Links, Examples, and Instructions
+st.sidebar.header("Links & Tutorials:")
 st.sidebar.write("""
-- **Prompt Structure:** The prompt is generated using structured elements: camera movement, lighting, mood, character, setting, and details, based on keywords inspired by your sources.
-- **Keywords:** Sample keywords are chosen to align with the visuals and styles mentioned in the sources.
-- **Visual Elements:** The prompt elements align with common imagery from the sources, such as smoke, crystals, and natural settings.
-- **Streamlit UI:** This tool uses Streamlit to create an interactive interface for easy input and prompt generation.
+- [Streamlit Documentation](https://docs.streamlit.io/)
+- [Cinematography Techniques](https://www.studiobinder.com/blog/cinematography-techniques/)
+- [Lighting Styles Guide](https://www.masterclass.com/articles/lighting-in-film)
 """)
 
-# Instructions for Running the Code
+st.sidebar.header("Examples & GIFs:")
+st.sidebar.write("""
+- [Camera Movement GIFs](https://www.giphy.com)
+- [Lighting Techniques in Film](https://www.youtube.com/watch?v=fQXB9oFmbHs)
+""")
+
 st.sidebar.header("Running the Code:")
 st.sidebar.write("""
 1. Ensure Python and Streamlit are installed. Use `pip install streamlit` if necessary.
@@ -144,7 +110,6 @@ st.sidebar.write("""
 4. The app will open in your web browser.
 """)
 
-# Important Considerations
 st.sidebar.header("Important Considerations:")
 st.sidebar.write("""
 - **Source Data:** Expand the sample data lists with keywords and concepts from your sources to make the prompt generator more robust.
