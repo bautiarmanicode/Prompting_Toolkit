@@ -2,8 +2,6 @@ import streamlit as st
 import random
 import os
 
-
-
 # Sample Data (Expand these based on sources)
 camera_movements = [
     "Slow zoom", 
@@ -84,30 +82,7 @@ characters = ["Shaman woman", "Group of women", "Lone figure", "Jaguar"]
 settings = ["Ancient forest", "Emerald lagoon", "Cave of healing", "Desert landscape"]
 details = ["Crystals", "Incense smoke", "Petroglyphs", "Medicinal plants"]
 
-# Streamlit App Title
-st.title("Prompt Generator for Alpha Gen-3")
-
-# Sidebar Inputs
-st.sidebar.header("Prompt Elements")
-selected_camera = st.sidebar.selectbox("Choose a camera movement:", camera_movements)
-selected_lighting = st.sidebar.selectbox("Choose a lighting style:", lighting_styles)
-selected_mood = st.sidebar.selectbox("Choose a mood:", moods)
-selected_character = st.sidebar.selectbox("Choose a character:", characters)
-selected_setting = st.sidebar.selectbox("Choose a setting:", settings)
-selected_details = st.sidebar.multiselect("Choose details (optional):", details)
-
-# Generate Prompt Logic
-prompt = f"Create a visually stunning scene with a {selected_mood} atmosphere.\n"
-prompt += f"Camera: {selected_camera}\n"
-prompt += f"Lighting: {selected_lighting}\n"
-prompt += f"Character: {selected_character}\n"
-prompt += f"Setting: {selected_setting}\n"
-
-if selected_details:
-    prompt += "Details: " + ", ".join(selected_details)
-
-
-# Función para manejar opciones personalizadas
+# Function for handling custom options
 def custom_option(options, label):
     custom = st.sidebar.text_input(f"Custom {label}:")
     if custom:
@@ -149,14 +124,6 @@ if idea:
 
 # Display Generated Prompt
 st.header("Generated Prompt:")
-st.write(prompt)
-
-
-
-
-
-# Display Generated Prompt
-st.header("Prompt Generado:")
 st.write(prompt)
 
 # Explanation and Connection to Sources
