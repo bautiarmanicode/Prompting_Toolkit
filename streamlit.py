@@ -1,5 +1,11 @@
-import prompting as st
-from streamlit.components.v1 import html
+import streamlit as st  # Importa Streamlit con el alias estándar 'st'
+from streamlit.components.v1 import html 
+import prompting  # Importa 'prompting' sin asignarle un alias
+
+# ... (resto de tu código)
+
+st.title("Contenido incrustado de Taskade")  # Ahora esto debería funcionar correctamente
+
 
 # URL del iframe que quieres mostrar
 iframe_url = "https://www.taskade.com/embed/o9Q2nz2aXmF7WddQ?as=list&share=view&view=R7sHdmVxy5RRGNvX&theme=dark&coverImageType=none"
