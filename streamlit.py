@@ -13,8 +13,8 @@ iframe_url = "https://www.taskade.com/embed/o9Q2nz2aXmF7WddQ?as=list&share=view&
 # Código HTML para incrustar el iframe
 iframe_html = f"""
 <iframe 
-    width="100%" 
-    height="600"  # Ajusta la altura según sea necesario
+    width="150%" 
+    height="1200"  # Ajusta la altura según sea necesario
     scrolling="yes" 
     frameborder="0" 
     src="{iframe_url}">
