@@ -23,4 +23,4 @@ iframe_html = f"""
 
 # Muestra el iframe usando st.components.v1.html
 st.title("Contenido incrustado de Taskade")
-html(iframe_html, height=600)  # Ajusta la altura según sea necesario
+html(iframe_html, height=1200)  # Ajusta la altura según sea necesario
